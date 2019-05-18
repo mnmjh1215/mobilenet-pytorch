@@ -1,5 +1,9 @@
 # PyTorch implementation of MobileNet-v1 and MobileNet-v2
 
-This is quick, and thus not generalized, implementation of two versions of MobileNet. 
+This repository contains simple, not generalized, implementations of two versions of MobileNet. 
 
-This implementation is not generalized, meaning it only strictly follows model architecture presented in MobileNet paper. To modify model architecture, you must directly change model implementation.
+These implementations are not generalized, meaning they only strictly follow model architectures presented in two MobileNet papers. To modify model architectures, you must directly change model implementation in models directory.
+
+[MobileNet-v1](https://arxiv.org/pdf/1704.04861.pdf)
+
+[MobileNet-v2](https://arxiv.org/pdf/1801.04381.pdf)

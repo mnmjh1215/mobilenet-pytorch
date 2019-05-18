@@ -1,6 +1,10 @@
 # building blocks for mobilenet-v2. (https://arxiv.org/pdf/1801.04381.pdf)
 
 class Bottleneck(nn.Module):
+    """
+    Bottleneck (Residual) block used mainly in MobileNet-v2.
+    
+    """
     def __init__(self, in_channel, out_channel, stride, expand_ratio):
         super().__init__()
         self.residual_connection = (stride == 1 and in_channel == out_channel)
@@ -26,6 +30,9 @@ class Bottleneck(nn.Module):
         return out
 
 class Conv(nn.Module):
+    """
+    simple convolutional layer followed by batch normalization and relu6 activation
+    """
     def __init__(self, in_channel, out_channel, kernel_size=3, stride=1, padding=1):
         super().__init__()
         self.layers = nn.Sequential(
@@ -44,6 +51,7 @@ class MobileNetV2(nn.Module):
         
         self.num_classes = num_classes
         
+        # strictly follows model architecture in mobilenet-v2 paper
         self.model = nn.Sequential(
                 Conv(3, 32, stride=2),
             
@@ -76,6 +84,8 @@ class MobileNetV2(nn.Module):
         
         
         self.avg_pool = nn.AdaptiveAvgPool2d(1)
+        # instead of flattening and then using linear layer, used Conv2d then flattened
+        #  
         self.fc = nn.Conv2d(1280, num_classes, kernel_size=1, stride=1, padding=0, bias=False)
         
     def forward(self, input):

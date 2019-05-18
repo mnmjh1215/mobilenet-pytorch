@@ -26,8 +26,11 @@ class Conv(nn.Module):
     
 
 class Conv_dw_Conv(nn.Module):
-    # Conv dw layer followed by Conv layer.
-    # implemented this way since every conv dw layer is followed by conv layer with kernel size 1, stride 1 with some out_channel
+    """
+    Conv_dw is depthwise (dw) convolution layer followed by batch normalization and ReLU activation.
+    Conv_dw_Conv is Conv_dw block followed by Conv block.
+    Implemented Conv_dw_Conv instead of Conv_dw since in MobleNet, every Conv_dw is followed by Conv
+    """
     def __init__(self, in_channel, out_channel, kernel_size=3, stride=1, padding=1, use_relu6=False):
         super().__init__()
         self.layers = [
